@@ -29,7 +29,6 @@ const parse = (event) => new Promise((resolve, reject) => {
     };
 
     bb.on('file', (name, file, info) => {
-    bb.on('file', (name, file, info) => {
         const uploadFile = {};
 
         file.on('data', data => {
@@ -42,10 +41,6 @@ const parse = (event) => new Promise((resolve, reject) => {
                 uploadFile.contentType = info.mimeType;
                 uploadFile.encoding = info.encoding;
                 uploadFile.fieldname = name;
-                uploadFile.filename = info.filename;
-                uploadFile.contentType = info.mimeType;
-                uploadFile.encoding = info.encoding;
-                uploadFile.fieldname = name;
                 result.files.push(uploadFile);
             }
         });
@@ -53,11 +48,8 @@ const parse = (event) => new Promise((resolve, reject) => {
 
     bb.on('field', (name, val, info) => {
         result[name] = val;
-    bb.on('field', (name, val, info) => {
-        result[name] = val;
     });
 
-    bb.on('error', error => {
     bb.on('error', error => {
         reject(error);
     });
@@ -68,8 +60,6 @@ const parse = (event) => new Promise((resolve, reject) => {
 
     const encoding = event.encoding || (event.isBase64Encoded ? "base64" : "binary");
 
-    bb.write(event.body, encoding);
-    bb.end();
     bb.write(event.body, encoding);
     bb.end();
 });
