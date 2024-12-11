@@ -1,6 +1,6 @@
 'use strict';
 
-const Busboy = require('busboy');
+const busboy = require('busboy');
 
 /*
  * This module will parse the multipart-form containing files and fields from the lambda event object.
@@ -21,49 +21,47 @@ const Busboy = require('busboy');
     }
  */
 const parse = (event) => new Promise((resolve, reject) => {
-    const busboy = new Busboy({
-        headers: {
-            'content-type': event.headers['content-type'] || event.headers['Content-Type']
-        }
+    const bb = busboy({
+        headers: event.headers
     });
     const result = {
         files: []
     };
 
-    busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+    bb.on('file', (name, file, info) => {
         const uploadFile = {};
 
         file.on('data', data => {
             uploadFile.content = data;
         });
 
-        file.on('end', () => {
+        file.on('close', () => {
             if (uploadFile.content) {
-                uploadFile.filename = filename;
-                uploadFile.contentType = mimetype;
-                uploadFile.encoding = encoding;
-                uploadFile.fieldname = fieldname;
+                uploadFile.filename = info.filename;
+                uploadFile.contentType = info.mimeType;
+                uploadFile.encoding = info.encoding;
+                uploadFile.fieldname = name;
                 result.files.push(uploadFile);
             }
         });
     });
 
-    busboy.on('field', (fieldname, value) => {
-        result[fieldname] = value;
+    bb.on('field', (name, val, info) => {
+        result[name] = val;
     });
 
-    busboy.on('error', error => {
+    bb.on('error', error => {
         reject(error);
     });
 
-    busboy.on('finish', () => {
+    bb.on('close', () => {
         resolve(result);
     });
 
     const encoding = event.encoding || (event.isBase64Encoded ? "base64" : "binary");
 
-    busboy.write(event.body, encoding);
-    busboy.end();
+    bb.write(event.body, encoding);
+    bb.end();
 });
 
 module.exports.parse = parse;
