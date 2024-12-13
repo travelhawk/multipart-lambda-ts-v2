@@ -1,7 +1,7 @@
-declare module "lambda-multipart-parser" {
+declare module "multipart-lambda-ts-v2" {
     import {
         APIGatewayProxyEvent,
-        APIGatewayProxyEventV2,
+        APIGatewayProxyEventV2
     } from "aws-lambda"
 
     interface MultipartFile {

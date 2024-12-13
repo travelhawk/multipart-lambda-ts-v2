@@ -3,6 +3,7 @@
     "version": "1.1.0",
     "description": "This module will parse the multipart-form containing files and fields from the lambda event object.",
     "main": "index.js",
+    "author": "travelhawk",
     "contributors": [
         "francismeynard",
         "travelhawk"
