@@ -1,13 +1,24 @@
-# lambda-multipart-parser
-```
-npm install lambda-multipart-parser --save
-```
+# multipart-lambda-ts-v2
 
 ## Introduction
-This nodejs module will parse the multipart-form containing files and fields from the AWS lambda event object. It works very well parsing **binary** and text files.
+
+Parse multipart-form with this module for AWS Lambda. It supports files and fields using the lambda event object coming from AWS API Gateway. Works well parsing binary and text files.
+
+This is a fork of [francismeynard/lambda-multipart-parser](https://github.com/francismeynard/lambda-multipart-parser) which integrates the following changes:
+
+- Update busboy library to newest version (1.6.0)
+- Support for lambda payload format V2.0 (`APIGatewayProxyEventV2`)
+- Typescript support
+
+## Installation
+
+```bash
+npm install multipart-lambda-ts-v2
+```
 
 ## Description
-```
+
+```bash
 @param {event} - an event containing the multipart-form in the body
 @return {object} - a JSON object containing array of files and fields, sample below.
 
@@ -27,22 +38,22 @@ This nodejs module will parse the multipart-form containing files and fields fro
 ```
 
 ## Usage
-```
-const parser = require('lambda-multipart-parser');
+
+```bash
+const parser = require('multipart-lambda-ts-v2');
 
 const result = await parser.parse(event);
 console.log(result.files);
 ```
 
 **Important**
-Please make sure to enable the "Use Lambda Proxy integration" in API Gateway method Integration request. 
+Please make sure to enable the "Use Lambda Proxy integration" in API Gateway method Integration request.
 
 If decided not to enable it for some reason, make sure to pass the required Lambda event parameters in Integration Request -> Mapping Templates section, such as body, headers and isBase64Encoded flag.
 
-Sample Lambda and API Gateway implementation with Cloudformation can be found in [here](http://francismeynard.github.io/aws-upload-document-service).
-
 ## Test
-```
+
+```bash
 npm run test
 ```
 

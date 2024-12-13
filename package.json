@@ -1,21 +1,25 @@
 {
-    "name": "lambda-multipart-parser",
-    "version": "1.0.1",
+    "name": "multipart-lambda-ts-v2",
+    "version": "1.1.0",
     "description": "This module will parse the multipart-form containing files and fields from the lambda event object.",
     "main": "index.js",
-    "author": "francismeynard",
+    "contributors": [
+        "francismeynard",
+        "travelhawk"
+    ],
     "license": "MIT",
     "scripts": {
-        "test": "./node_modules/.bin/mocha --recursive --reporter spec"
+        "test": "npx mocha --recursive --reporter spec"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/francismeynard/lambda-multipart-parser.git"
+        "url": "git+https://github.com/travelhawk/multipart-lambda-ts-v2.git"
     },
-    "homepage": "https://github.com/francismeynard/lambda-multipart-parser#readme",
+    "homepage": "https://github.com/travelhawk/multipart-lambda-ts-v2.git#readme",
     "keywords": [
         "aws",
         "lambda",
+        "apigateway",
         "parser",
         "multipart",
         "form-data",

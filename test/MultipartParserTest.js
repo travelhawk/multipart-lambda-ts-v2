@@ -21,7 +21,7 @@ describe('MultipartParser', () => {
             // GIVEN
             const event = {
                 headers: {
-                    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryDP6Z1qHQSzB6Pf8c"
+                    "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryDP6Z1qHQSzB6Pf8c"
                 },
                 body: ['------WebKitFormBoundaryDP6Z1qHQSzB6Pf8c',
                     'Content-Disposition: form-data; name="uploadFile1"; filename="test.txt"',
@@ -51,7 +51,7 @@ describe('MultipartParser', () => {
             // GIVEN
             const event = {
                 headers: {
-                    "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryDP6Z1qHQSzB6Pf8c"
+                    "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryDP6Z1qHQSzB6Pf8c"
                 },
                 body: `LS0tLS0tV2ViS2l0Rm9ybUJvdW5kYXJ5RFA2WjFxSFFTekI2UGY4Yw0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJ1cGxvYWRGaWxlMSI7IGZpb
                         GVuYW1lPSJ0ZXN0LnR4dCINCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpbg0KDQpIZWxsbyBXb3JsZCENCi0tLS0tLVdlYktpdEZvcm1Cb3VuZGFyeURQNloxcUhRU3pCNl
@@ -79,7 +79,7 @@ describe('MultipartParser', () => {
             const html = "<p> </p>";
             const event = {
               headers: {
-                "Content-Type": "multipart/form-data; boundary=xYzZY",
+                "content-type": "multipart/form-data; boundary=xYzZY",
               },
               body: `--xYzZY\r\nContent-Disposition: form-data; name="html"\r\n\r\n${html}\r\n--xYzZY--\r\n`,
               encoding: 'utf8',
