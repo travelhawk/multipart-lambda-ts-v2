@@ -66,3 +66,5 @@ npm run test
 1.0.0 - Formalized package release version. Add utf8 support.
 
 1.0.1 - Added support for TypeScript typings.
+
+1.1.0 - Added support for payload format V2.0. Updated Typescript bindings. Updated busboy to 1.6.0.
